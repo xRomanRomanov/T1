@@ -17,6 +17,8 @@ int main()
 
    // std::cout << "first step, commit it :) " << std::endl;
 
+   // now let's  to merge both  branches
+
 
     //задержка выключения
     cin.clear();
