@@ -15,6 +15,8 @@ int main()
 
     std::cout << "This version is main" << std::endl;
 
+    std::cout << "first step, commit it :) " << std::endl;
+
 
     //задержка выключения
     cin.clear();
