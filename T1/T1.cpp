@@ -13,9 +13,9 @@ int main()
 
     std::cout << "test GitHub\n";
 
-    std::cout << "This version is main" << std::endl;
+    std::cout << "This version is not main, branch_1" << std::endl;
 
-    std::cout << "first step, commit it :) " << std::endl;
+   // std::cout << "first step, commit it :) " << std::endl;
 
 
     //задержка выключения
