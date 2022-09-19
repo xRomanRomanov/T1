@@ -81,7 +81,7 @@ public:
 	bool get_dinnered() const { return m_dinnered; }
 
 	static int get_agr_coef() { return m_agr_coef; }
-	static void set_agr_coef(double agr_coef);
+	static void set_agr_coef(int agr_coef);
 	
 
 

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <iostream>
 #include "bakterium.h"
 #include <cassert> // для assert()
@@ -93,7 +93,7 @@ void bakterium_agressiv::set_dinnered(bool d)
 	m_dinnered = d;
 }
 
-void bakterium_agressiv::set_agr_coef(double agr_coef)
+void bakterium_agressiv::set_agr_coef(int agr_coef)
 {
 	m_agr_coef = agr_coef;
 
