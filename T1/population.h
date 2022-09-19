@@ -140,32 +140,15 @@ class population :public population_base <T>
 {
 public:
 	population(int start_amount_population, T &b1)
-		:population_base(start_amount_population, b1)
+		:population_base<T>(start_amount_population, b1)
 	{
 		
 	}
 
 	population(int start_amount_population, T&& b1)
-		:population_base(start_amount_population, b1)
+		:population_base<T>(start_amount_population, b1)
 	{
 		
-	}
-};
-
-template <> //непонятная ошибка. без специализации ругается на конструктор
-class population<bakterium_agressiv> :public population_base <bakterium_agressiv>
-{
-public:
-	population(int start_amount_population, bakterium_agressiv& b1)
-		:population_base(start_amount_population, b1)
-	{
-
-	}
-
-	population(int start_amount_population, bakterium_agressiv&& b1)
-		:population_base(start_amount_population, b1)
-	{
-
 	}
 };
 
