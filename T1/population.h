@@ -75,12 +75,12 @@ public:
 		population_massiv.pop_back();
 	}
 
-	void push_back(T &b1) //может тут экономнее будет принимать ссылку на r-value (&&b1), что бы перемещать объект, а не копировать?
+	void push_back(const T &b1) //может тут экономнее будет принимать ссылку на r-value (&&b1), что бы перемещать объект, а не копировать?
 	{
 		population_massiv.push_back(b1);
 	}
 
-	void push_front(T &b1)
+	void push_front(const T &b1)
 	{
 		population_massiv.push_front(b1);
 	}
@@ -142,15 +142,35 @@ public:
 	population(int start_amount_population, T &b1)
 		:population_base(start_amount_population, b1)
 	{
-
+		
 	}
 
 	population(int start_amount_population, T&& b1)
 		:population_base(start_amount_population, b1)
 	{
+		
+	}
+};
+
+template <> //непонятная ошибка. без специализации ругается на конструктор
+class population<bakterium_agressiv> :public population_base <bakterium_agressiv>
+{
+public:
+	population(int start_amount_population, bakterium_agressiv& b1)
+		:population_base(start_amount_population, b1)
+	{
+
+	}
+
+	population(int start_amount_population, bakterium_agressiv&& b1)
+		:population_base(start_amount_population, b1)
+	{
 
 	}
 };
+
+
+
 
 template <> //специализируем шаблон для мирных бактерий, с учетом старения
 class population<bakterium_peasefull> :public population_base <bakterium_peasefull>

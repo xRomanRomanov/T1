@@ -34,11 +34,12 @@ int main()
 
 	Bact_INI bact_INI; //создадим структуру для хранения начальных даных
 	read_initial_from_file(bact_INI); //заполним её из файла
-	bakterium_peasefull B_P(0, bact_INI.m_speed_coef_peas, bact_INI.m_reproduction_coef_peas);
+	
 	population<bakterium_peasefull> P(bact_INI.count_peas, bakterium_peasefull(0, bact_INI.m_speed_coef_peas, bact_INI.m_reproduction_coef_peas));
 	//population<bakterium_peasefull> P(bact_INI.count_peas, B_P);
 	//P.push_back(bakterium_peasefull(1, 1.2));
-	//P.push_back(bakterium_peasefull(1, bact_INI.m_speed_coef_peas*0.8));
+	//bakterium_peasefull B_P(0, bact_INI.m_speed_coef_peas * 0.8);
+	P.push_back(bakterium_peasefull(0, bact_INI.m_speed_coef_peas * 0.8) );//добавим хилую бактерию, для прокормки хищьных
 	bakterium_peasefull::set_ageing_coef(bact_INI.m_ageing_coef);
 
 	bakterium_agressiv B_A(0, bact_INI.m_speed_coef_peas, bact_INI.m_reproduction_coef_peas);
@@ -51,6 +52,7 @@ int main()
 
 
 	P.show_speed();
+	cout << endl;
 	P_agr.show_speed();
 	cout << endl;
 
@@ -128,7 +130,7 @@ void dinner(population<bakterium_peasefull>& P, population<bakterium_agressiv>& 
 		}
 
 	}
-	cout << endl;
+	cout  << endl;
 
 	hunger_agr_bact(P_agr);
 
@@ -137,11 +139,14 @@ void dinner(population<bakterium_peasefull>& P, population<bakterium_agressiv>& 
 void hunger_agr_bact(population<bakterium_agressiv>& P_agr)
 {
 
+
 	//сначало проверим первые элементы, вдруг там подряд идет ряд голодных бактерий
 	while (P_agr.at(0).get_dinnered() == false)
 	{
+		if (P_agr.size() < 2) return;//если остается 1, то вылетает на следующей операции.
 		P_agr.pop_front();
 	}
+
 	//теперь первая бактерия в списке - сытая (dinnered == true)
 	//её пpоверять не будем, начнем сразу со второй
 	//для тренировки отсортируем массив вариацией метода пузырька
@@ -156,7 +161,6 @@ void hunger_agr_bact(population<bakterium_agressiv>& P_agr)
 		}
 	}
 	// теперь все голодные в начале массива. Удалим их)
-
 	while (P_agr.at(0).get_dinnered() == false)
 	{
 		P_agr.pop_front();
